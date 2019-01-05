@@ -50,38 +50,47 @@ The data consist of gender inequality-related variables from 146 countries prese
 gender  <-  read.csv("gender_data.csv",header=TRUE)  #import csv file
 rownames(gender) <- gender$Country
 gender <- gender[-c(1)]
-names(gender) <- c("GII.rank", "GII.val", "Mat.mort.ratio", "Ado.fert.rate","pct.parl.seats.Fem", "pct.sec.ed.Fem", "pct.sec.ed.Male", "labor.force.part.Fem", "labor.force.part.Male", "pct.contracept", "pct.antenatal.care", "pct.birth.by.prof", "Tot.fert.rate")
-head(gender)
+names(gender) <- c("GII.rank", "GII.val", "Mat.mort.ratio", "Ado.fert.rate",
+                   "pct.parl.seats.Fem", "pct.sec.ed.Fem", "pct.sec.ed.Male", 
+                   "labor.force.part.Fem", "labor.force.part.Male", "pct.contracept", 
+                   "pct.antenatal.care", "pct.birth.by.prof", "Tot.fert.rate")
+summary(gender)
 ```
 
-    ##               GII.rank GII.val Mat.mort.ratio Ado.fert.rate
-    ## Norway               6   0.075              7           9.0
-    ## Australia           18   0.136              8          16.5
-    ## Netherlands          2   0.052              9           5.1
-    ## United States       47   0.299             24          41.2
-    ## New Zealand         32   0.195             14          30.9
-    ## Canada              20   0.140             12          14.0
-    ##               pct.parl.seats.Fem pct.sec.ed.Fem pct.sec.ed.Male
-    ## Norway                      39.6           99.3            99.1
-    ## Australia                   28.3           95.1            97.2
-    ## Netherlands                 37.8           86.3            89.2
-    ## United States               16.8           95.3            94.5
-    ## New Zealand                 33.6           71.6            73.5
-    ## Canada                      24.9           92.3            92.7
-    ##               labor.force.part.Fem labor.force.part.Male pct.contracept
-    ## Norway                        63.0                  71.0             88
-    ## Australia                     58.4                  72.2             71
-    ## Netherlands                   59.5                  72.9             69
-    ## United States                 58.4                  71.9             73
-    ## New Zealand                   61.8                  75.7             75
-    ## Canada                        62.7                  73.0             74
-    ##               pct.antenatal.care pct.birth.by.prof Tot.fert.rate
-    ## Norway                        NA                NA           2.0
-    ## Australia                    100               100           2.0
-    ## Netherlands                   NA               100           1.8
-    ## United States                 NA                99           2.1
-    ## New Zealand                   95               100           2.1
-    ## Canada                        NA                98           1.7
+    ##     GII.rank         GII.val       Mat.mort.ratio   Ado.fert.rate   
+    ##  Min.   :  1.00   Min.   :0.0490   Min.   :   2.0   Min.   :  0.70  
+    ##  1st Qu.: 37.25   1st Qu.:0.2303   1st Qu.:  18.0   1st Qu.: 16.50  
+    ##  Median : 73.50   Median :0.4185   Median :  68.0   Median : 39.35  
+    ##  Mean   : 73.50   Mean   :0.3942   Mean   : 211.2   Mean   : 51.81  
+    ##  3rd Qu.:109.75   3rd Qu.:0.5450   3rd Qu.: 320.0   3rd Qu.: 74.38  
+    ##  Max.   :146.00   Max.   :0.7690   Max.   :1400.0   Max.   :207.10  
+    ##  NA's   :48       NA's   :48       NA's   :23                       
+    ##  pct.parl.seats.Fem pct.sec.ed.Fem  pct.sec.ed.Male labor.force.part.Fem
+    ##  Min.   : 0.00      Min.   : 0.90   Min.   : 6.00   Min.   :13.80       
+    ##  1st Qu.: 9.80      1st Qu.:24.93   1st Qu.:36.30   1st Qu.:45.10       
+    ##  Median :16.80      Median :54.60   Median :56.05   Median :53.80       
+    ##  Mean   :18.03      Mean   :50.37   Mean   :56.05   Mean   :53.02       
+    ##  3rd Qu.:23.50      3rd Qu.:71.42   3rd Qu.:77.28   3rd Qu.:62.10       
+    ##  Max.   :53.60      Max.   :99.30   Max.   :99.10   Max.   :91.00       
+    ##  NA's   :6          NA's   :36      NA's   :36      NA's   :17          
+    ##  labor.force.part.Male pct.contracept  pct.antenatal.care
+    ##  Min.   :50.00         Min.   : 3.00   Min.   : 16.0     
+    ##  1st Qu.:70.60         1st Qu.:32.00   1st Qu.: 84.0     
+    ##  Median :76.70         Median :51.00   Median : 92.0     
+    ##  Mean   :76.05         Mean   :48.97   Mean   : 86.9     
+    ##  3rd Qu.:81.10         3rd Qu.:69.00   3rd Qu.: 97.0     
+    ##  Max.   :93.00         Max.   :89.00   Max.   :100.0     
+    ##  NA's   :17            NA's   :16      NA's   :44        
+    ##  pct.birth.by.prof Tot.fert.rate  
+    ##  Min.   :  6.00    Min.   :1.100  
+    ##  1st Qu.: 62.00    1st Qu.:1.700  
+    ##  Median : 95.00    Median :2.300  
+    ##  Mean   : 79.99    Mean   :2.803  
+    ##  3rd Qu.: 99.00    3rd Qu.:3.800  
+    ##  Max.   :100.00    Max.   :6.900  
+    ##  NA's   :18        NA's   :13
+
+*There is a lot of missingness in the antenatal care column, so we will drop this variable later.*
 
 The dataset include these variables:
 
@@ -89,10 +98,10 @@ The dataset include these variables:
 <thead>
 <tr>
 <th style="text-align:left;">
-Variable\_Code
+Variable Code
 </th>
 <th style="text-align:left;">
-Variable\_Name
+Variable Name
 </th>
 </tr>
 </thead>
@@ -203,47 +212,6 @@ Total Fertility Rate
 </tr>
 </tbody>
 </table>
-Here are some summary stats.
-
-``` r
-summary(gender)
-```
-
-    ##     GII.rank         GII.val       Mat.mort.ratio   Ado.fert.rate   
-    ##  Min.   :  1.00   Min.   :0.0490   Min.   :   2.0   Min.   :  0.70  
-    ##  1st Qu.: 37.25   1st Qu.:0.2303   1st Qu.:  18.0   1st Qu.: 16.50  
-    ##  Median : 73.50   Median :0.4185   Median :  68.0   Median : 39.35  
-    ##  Mean   : 73.50   Mean   :0.3942   Mean   : 211.2   Mean   : 51.81  
-    ##  3rd Qu.:109.75   3rd Qu.:0.5450   3rd Qu.: 320.0   3rd Qu.: 74.38  
-    ##  Max.   :146.00   Max.   :0.7690   Max.   :1400.0   Max.   :207.10  
-    ##  NA's   :48       NA's   :48       NA's   :23                       
-    ##  pct.parl.seats.Fem pct.sec.ed.Fem  pct.sec.ed.Male labor.force.part.Fem
-    ##  Min.   : 0.00      Min.   : 0.90   Min.   : 6.00   Min.   :13.80       
-    ##  1st Qu.: 9.80      1st Qu.:24.93   1st Qu.:36.30   1st Qu.:45.10       
-    ##  Median :16.80      Median :54.60   Median :56.05   Median :53.80       
-    ##  Mean   :18.03      Mean   :50.37   Mean   :56.05   Mean   :53.02       
-    ##  3rd Qu.:23.50      3rd Qu.:71.42   3rd Qu.:77.28   3rd Qu.:62.10       
-    ##  Max.   :53.60      Max.   :99.30   Max.   :99.10   Max.   :91.00       
-    ##  NA's   :6          NA's   :36      NA's   :36      NA's   :17          
-    ##  labor.force.part.Male pct.contracept  pct.antenatal.care
-    ##  Min.   :50.00         Min.   : 3.00   Min.   : 16.0     
-    ##  1st Qu.:70.60         1st Qu.:32.00   1st Qu.: 84.0     
-    ##  Median :76.70         Median :51.00   Median : 92.0     
-    ##  Mean   :76.05         Mean   :48.97   Mean   : 86.9     
-    ##  3rd Qu.:81.10         3rd Qu.:69.00   3rd Qu.: 97.0     
-    ##  Max.   :93.00         Max.   :89.00   Max.   :100.0     
-    ##  NA's   :17            NA's   :16      NA's   :44        
-    ##  pct.birth.by.prof Tot.fert.rate  
-    ##  Min.   :  6.00    Min.   :1.100  
-    ##  1st Qu.: 62.00    1st Qu.:1.700  
-    ##  Median : 95.00    Median :2.300  
-    ##  Mean   : 79.99    Mean   :2.803  
-    ##  3rd Qu.: 99.00    3rd Qu.:3.800  
-    ##  Max.   :100.00    Max.   :6.900  
-    ##  NA's   :18        NA's   :13
-
-*There is a lot of missingness in the antenatal care column, so we will drop this variable later.*
-
 Simple Diagnostics
 ------------------
 
@@ -253,85 +221,10 @@ We can use Pearson's r to determine the degree of correlations across variables.
 
 ``` r
 corrmatrix <- cor(gender, use = "pairwise.complete.obs")
-round(corrmatrix, 2)
-```
-
-    ##                       GII.rank GII.val Mat.mort.ratio Ado.fert.rate
-    ## GII.rank                  1.00    1.00           0.73          0.80
-    ## GII.val                   1.00    1.00           0.71          0.79
-    ## Mat.mort.ratio            0.73    0.71           1.00          0.71
-    ## Ado.fert.rate             0.80    0.79           0.71          1.00
-    ## pct.parl.seats.Fem       -0.34   -0.36          -0.02         -0.04
-    ## pct.sec.ed.Fem           -0.78   -0.77          -0.69         -0.63
-    ## pct.sec.ed.Male          -0.72   -0.72          -0.63         -0.60
-    ## labor.force.part.Fem      0.09    0.06           0.33          0.22
-    ## labor.force.part.Male     0.57    0.57           0.43          0.46
-    ## pct.contracept           -0.65   -0.64          -0.71         -0.50
-    ## pct.antenatal.care       -0.53   -0.53          -0.61         -0.37
-    ## pct.birth.by.prof        -0.76   -0.75          -0.80         -0.63
-    ## Tot.fert.rate             0.77    0.76           0.82          0.79
-    ##                       pct.parl.seats.Fem pct.sec.ed.Fem pct.sec.ed.Male
-    ## GII.rank                           -0.34          -0.78           -0.72
-    ## GII.val                            -0.36          -0.77           -0.72
-    ## Mat.mort.ratio                     -0.02          -0.69           -0.63
-    ## Ado.fert.rate                      -0.04          -0.63           -0.60
-    ## pct.parl.seats.Fem                  1.00           0.10            0.06
-    ## pct.sec.ed.Fem                      0.10           1.00            0.94
-    ## pct.sec.ed.Male                     0.06           0.94            1.00
-    ## labor.force.part.Fem                0.26          -0.09           -0.11
-    ## labor.force.part.Male              -0.07          -0.53           -0.55
-    ## pct.contracept                      0.17           0.57            0.55
-    ## pct.antenatal.care                  0.04           0.50            0.41
-    ## pct.birth.by.prof                  -0.06           0.75            0.65
-    ## Tot.fert.rate                      -0.10          -0.69           -0.64
-    ##                       labor.force.part.Fem labor.force.part.Male
-    ## GII.rank                              0.09                  0.57
-    ## GII.val                               0.06                  0.57
-    ## Mat.mort.ratio                        0.33                  0.43
-    ## Ado.fert.rate                         0.22                  0.46
-    ## pct.parl.seats.Fem                    0.26                 -0.07
-    ## pct.sec.ed.Fem                       -0.09                 -0.53
-    ## pct.sec.ed.Male                      -0.11                 -0.55
-    ## labor.force.part.Fem                  1.00                  0.37
-    ## labor.force.part.Male                 0.37                  1.00
-    ## pct.contracept                       -0.23                 -0.42
-    ## pct.antenatal.care                    0.00                 -0.26
-    ## pct.birth.by.prof                    -0.32                 -0.49
-    ## Tot.fert.rate                         0.24                  0.50
-    ##                       pct.contracept pct.antenatal.care pct.birth.by.prof
-    ## GII.rank                       -0.65              -0.53             -0.76
-    ## GII.val                        -0.64              -0.53             -0.75
-    ## Mat.mort.ratio                 -0.71              -0.61             -0.80
-    ## Ado.fert.rate                  -0.50              -0.37             -0.63
-    ## pct.parl.seats.Fem              0.17               0.04             -0.06
-    ## pct.sec.ed.Fem                  0.57               0.50              0.75
-    ## pct.sec.ed.Male                 0.55               0.41              0.65
-    ## labor.force.part.Fem           -0.23               0.00             -0.32
-    ## labor.force.part.Male          -0.42              -0.26             -0.49
-    ## pct.contracept                  1.00               0.48              0.64
-    ## pct.antenatal.care              0.48               1.00              0.76
-    ## pct.birth.by.prof               0.64               0.76              1.00
-    ## Tot.fert.rate                  -0.74              -0.50             -0.76
-    ##                       Tot.fert.rate
-    ## GII.rank                       0.77
-    ## GII.val                        0.76
-    ## Mat.mort.ratio                 0.82
-    ## Ado.fert.rate                  0.79
-    ## pct.parl.seats.Fem            -0.10
-    ## pct.sec.ed.Fem                -0.69
-    ## pct.sec.ed.Male               -0.64
-    ## labor.force.part.Fem           0.24
-    ## labor.force.part.Male          0.50
-    ## pct.contracept                -0.74
-    ## pct.antenatal.care            -0.50
-    ## pct.birth.by.prof             -0.76
-    ## Tot.fert.rate                  1.00
-
-``` r
 corrplot(corrmatrix, method = "circle") #plot matrix
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 The visualization above represents the degree of the correlation of our gender inequality-related variables. The results suggest that the percent of females receiving post-secondary education is nearly perfectly correlated (r=0.94) with the percent of males. The gender inequality index (GII) rank is also perfectly correlated with the GII value due to the fact that the rank is simply a function of value. The correlation matrix below provides further confirmation of this.
 
@@ -354,7 +247,7 @@ formula <- ~Mat.mort.ratio+Ado.fert.rate+pct.sec.ed.Fem+labor.force.part.Fem+lab
 scatterplotMatrix(formula, upper.panel=panel.smooth, lwd=3, regLine = list(method=MASS::rlm, col="red", lwd=3), data=gender, main="Scatterplot Matrix of Gender Inequality Variables") 
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 The fitted regression lines (smoothed lines shown in black-dotted plots) also indicate some interesting trends:
 
@@ -367,7 +260,7 @@ sampled <- gender[sample(nrow(gender), 10), ]
 text(sampled$Tot.fert.rate~sampled$labor.force.part.Male, labels=rownames(sampled), cex=0.7, font=2)
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 -   Maternal mortality grows exponentially with rise in labour force participation of women. This means that, that for countries with low female participation in the labour force, further increases in participation among women tend to have a relatively small effect on maternal deaths during childbirth. However, countries with high rates of female participation tend to see a much larger increase in maternal mortality when more women enter the workforce.
 
@@ -378,7 +271,7 @@ sampled <- gender[sample(nrow(gender), 15), ]
 text(sampled$Mat.mort.ratio~sampled$labor.force.part.Fem, labels=rownames(sampled), cex=0.7, font=2)
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 -   On the other hand, total fertility and adolescent fertility rates decay exponentially for countries with higher numbers of males and females with a secondary education. In other words, countries with a more educated population will tend to be associated with a more significant drop in birth rates as more people acquire education.
 
@@ -389,7 +282,7 @@ sampled <- gender[sample(nrow(gender), 15), ]
 text(sampled$Tot.fert.rate~sampled$pct.sec.ed.Fem, labels=rownames(sampled), cex=0.7, font=2)
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 -   Finally, the association between total fertility and female labour force participation appears somewhat U-shaped. This implies that, for countires with low participation, more women entering the workforce tends to correlate with a relatively sharp decline in fertility whereas more women entering in a country with high participation tends to lead to a sharp increase in fertility.
 
@@ -400,7 +293,7 @@ sampled <- gender[sample(nrow(gender), 15), ]
 text(sampled$Tot.fert.rate~sampled$labor.force.part.Fem, labels=rownames(sampled), cex=0.7, font=2)
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 *Note that these do not imply any causation.*
 
@@ -446,7 +339,7 @@ plot(1:k.max, within.sums, type="b",
 abline(v = 3, lty =2, col="red")
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 The results suggest that most of the within-group sum of squares is reduced at k=3.
 
@@ -462,7 +355,7 @@ plot(gap_stat, frame = FALSE, xlab = "Number of clusters (k)",
 abline(v = 3, lty = 2)
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 The gap statistic method suggests we choose k such that *G**a**p*(*k*)≥*G**a**p*(*k* + 1)−*s**e*<sub>*k* + 1</sub> using Tibshirani et al.'s (2001) suggestion.
 
@@ -506,7 +399,7 @@ clusplot(gender.scaled, km$cluster, color=TRUE, shade=TRUE, labels=2, cex.txt=0.
          main="Gender Inequality Clusters (Country-level)")
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-14-1.png)
 
 Kernel Density Estimation
 -------------------------
@@ -530,7 +423,7 @@ points(kde$x[tp$tppos],kde$y[tp$tppos],col=c("red","white","red"),pch=19)
 abline(v=kde$x[tp$pits], col="red")
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-17-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 The estimation uses the recommended Sheather-Jones method for choosing bandwidth gives two local maxima and a local minimum. This suggests that the data can be reasonably classified into distinct groups. However, notice a slight dip in the density smooting at around x = 0.4 which might indicate a second minimum point for a narrower bandwith.
 
@@ -549,7 +442,7 @@ points(kde.rbw$x[tp.rbw$tppos],
 abline(v=kde.rbw$x[tp.rbw$pits], col="red")
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-16-1.png)
 
 With just a small decrease in bandwith using the Sheather-Jones method, our density now contains two local minima. Given the slight change and the results of our k-means tests for determining k, it seems reasonable to relax some degree of smoothness in favour of more variability.
 
@@ -598,7 +491,7 @@ paddr <- function(kde,km){
   kde <- c(kde, rep(" ", max.len - length(kde)))  
   km <- c(km, rep(" ", max.len - length(km)))
   inter <- c(inter, rep(" ", max.len - length(inter)))
-  data.frame(Both=inter, KDE_only=kde, Kmeans_only=km)
+  data.frame(Both=inter, "KDE only"=kde, "Kmeans only"=km, check.names=FALSE)
 }
 ```
 
@@ -611,10 +504,10 @@ paddr <- function(kde,km){
 Both
 </th>
 <th style="text-align:left;">
-KDE\_only
+KDE only
 </th>
 <th style="text-align:left;">
-Kmeans\_only
+Kmeans only
 </th>
 </tr>
 </thead>
@@ -867,10 +760,10 @@ United States
 Both
 </th>
 <th style="text-align:left;">
-KDE\_only
+KDE only
 </th>
 <th style="text-align:left;">
-Kmeans\_only
+Kmeans only
 </th>
 </tr>
 </thead>
@@ -1275,10 +1168,10 @@ Zimbabwe
 Both
 </th>
 <th style="text-align:left;">
-KDE\_only
+KDE only
 </th>
 <th style="text-align:left;">
-Kmeans\_only
+Kmeans only
 </th>
 </tr>
 </thead>
@@ -1724,6 +1617,6 @@ par(cex = 0.6, mar = rep(0,4))
 circlize_dendrogram(dend, edgePar=list(cex=0.3)) 
 ```
 
-![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-24-1.png)
+![](Clustering_countires_by_gender_equality_gh_files/figure-markdown_github/unnamed-chunk-22-1.png)
 
 These results appear a bit more similar to the k-means clusters than to the KDE groups.
