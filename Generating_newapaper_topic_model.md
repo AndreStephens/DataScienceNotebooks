@@ -274,7 +274,7 @@ tfidf$round <- sapply(tfidf$tfidf, round)
 wordcloud2(tfidf[,c(2,1)], size=1.5)
 ```
 
-![wordcloud](wc1.png)
+![wordcloud](Generating_newapaper_topic_model_files\figure-markdown_github\wc1.png)
 
 LDA Model
 =========
@@ -319,7 +319,7 @@ topwords <- top.topic.words(model$topics, 10, by.score = TRUE)
     ## Warning: package 'xtable' was built under R version 3.5.2
 
 <!-- html table generated in R 3.5.1 by xtable 1.8-3 package -->
-<!-- Tue Jan 15 14:32:35 2019 -->
+<!-- Tue Jan 15 14:38:46 2019 -->
 <table border="1">
 <tr>
 <th>
@@ -706,4 +706,6 @@ even
 </td>
 </tr>
 </table>
-**A Thought:** Might LDA's assumptions about the generative process of textual meaning be more than a set of heuristics devised by idle abstractionists? Linguists have long understood that our brains process text as chunks of meaning rather than a succession of words. If we accept that we interpret meaning by drawing from a set of cognitive categories (topics) which are made up of symbols (terms) and imposed onto a meaning context (document), then the LDA might be even closer to natural language generation than we give it credit for.
+**A Thought:**
+
+Might LDA's assumptions about the generative process of textual meaning be more than a set of heuristics devised by idle abstractionists? Linguists have long understood that our brains process text as chunks of meaning rather than a succession of words. If we accept that we interpret meaning by drawing from a set of cognitive categories (topics) which are made up of symbols (terms) and imposed onto a meaning context (document), then the LDA might be even closer to natural language generation than we give it credit for.
