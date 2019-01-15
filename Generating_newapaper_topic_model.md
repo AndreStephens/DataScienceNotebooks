@@ -274,7 +274,7 @@ tfidf$round <- sapply(tfidf$tfidf, round)
 wordcloud2(tfidf[,c(2,1)], size=1.5)
 ```
 
-![wordcloud](Generating_newapaper_topic_model_files\figure-markdown_github\wc1.png)
+![wordcloud](Generating_newapaper_topic_model_files/figure-markdown_github/wc1.png)
 
 LDA Model
 =========
