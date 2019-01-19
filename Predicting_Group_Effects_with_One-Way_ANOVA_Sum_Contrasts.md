@@ -18,21 +18,23 @@ we use data from the 1975 U.S. Sustaining Effects Study of elementary education,
 Formalizing the Model
 =====================
 
-Let *i* represent individual students in the set of students {1, 2, ..., N} and *k* represent individual schools in the set of schools {1, 2, ..., J}. Then, we can formalize the classical analysis of variance model for predicting scores using sum-constrast as follows:
+Let *i* represent individual students in the set of students {1, 2, ..., *N*} and *k* represent individual schools in the set of schools {1, 2, ..., *J*}. Then, we can formalize the classical analysis of variance model for predicting scores using sum-constrast as follows:
 
-$$ y\_i = \\hat{\\alpha}\_j +  \\beta\_1 x\_{i,1} + \\beta\_2 x\_{i,2} ~ + ~ ... ~ + \\beta\_{J-1} x\_{i,J-1} + \\epsilon\_i, $$
+<a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;y_i&space;=&space;\hat{\alpha}_j&space;&plus;&space;\beta_1&space;x_{i,1}&space;&plus;&space;\beta_2&space;x_{i,2}&space;~&space;&plus;&space;~&space;...&space;~&space;&plus;&space;\beta_{J-1}&space;x_{i,J-1}&space;&plus;&space;\epsilon_i,&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;y_i&space;=&space;\hat{\alpha}_j&space;&plus;&space;\beta_1&space;x_{i,1}&space;&plus;&space;\beta_2&space;x_{i,2}&space;~&space;&plus;&space;~&space;...&space;~&space;&plus;&space;\beta_{J-1}&space;x_{i,J-1}&space;&plus;&space;\epsilon_i,&space;$$" title="$$ y_i = \hat{\alpha}_j + \beta_1 x_{i,1} + \beta_2 x_{i,2} ~ + ~ ... ~ + \beta_{J-1} x_{i,J-1} + \epsilon_i, $$" /></a>
 
-and the intercept $\\hat{\\alpha}\_j$ is given by,
+and the intercept is given by,
 
-$$ \\hat{\\alpha}\_j \\equiv \\tfrac{1}{J} \\sum\_{k=1}^{J} \\overline{x}\_j $$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{\alpha}_j&space;\equiv&space;\tfrac{1}{J}&space;\sum_{k=1}^{J}&space;\overline{x}_j" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{\alpha}_j&space;\equiv&space;\tfrac{1}{J}&space;\sum_{k=1}^{J}&space;\overline{x}_j" title="\hat{\alpha}_j \equiv \tfrac{1}{J} \sum_{k=1}^{J} \overline{x}_j" /></a>
 
 and where,
 
-*y*<sub>*i*</sub> represents the mean score of school *i*, $\\hat{\\alpha}\_j$ represents the mean of school mean scores, *β*<sub>*k*</sub> is the effect of the *k*<sup>*t**h*</sup> school, representing the predicted deviation of that school from the overall mean, *x*<sub>*i*, *k*</sub> is the *i*<sup>*t**h*</sup> student in school *k*, and *ϵ*<sub>*i*</sub> is the stochastic component such that *ϵ* ∼ 𝒩(0,  *σ*<sup>2</sup>).
+<a href="https://www.codecogs.com/eqnedit.php?latex=y_i" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y_i" title="y_i" /></a> represents the mean score of school <a href="https://www.codecogs.com/eqnedit.php?latex=i" target="_blank"><img src="https://latex.codecogs.com/gif.latex?i" title="i" /></a>, <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{\alpha}_j" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{\alpha}_j" title="\hat{\alpha}_j" /></a> represents the mean of school mean scores, <a href="https://www.codecogs.com/eqnedit.php?latex=\beta_k" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\beta_k" title="\beta_k" /></a> is the effect of the <a href="https://www.codecogs.com/eqnedit.php?latex=k^{th}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?k^{th}" title="k^{th}" /></a> school, representing the predicted deviation of that school from the overall mean, <a href="https://www.codecogs.com/eqnedit.php?latex=x_{i,k}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x_{i,k}" title="x_{i,k}" /></a> is the <a href="https://www.codecogs.com/eqnedit.php?latex=i^{th}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?i^{th}" title="i^{th}" /></a> student in school <a href="https://www.codecogs.com/eqnedit.php?latex=k" target="_blank"><img src="https://latex.codecogs.com/gif.latex?k" title="k" /></a>, and <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon_i" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon_i" title="\epsilon_i" /></a> is the stochastic component such that <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon&space;\sim&space;\mathcal{N}(0,\,\sigma^{2})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon&space;\sim&space;\mathcal{N}(0,\,\sigma^{2})" title="\epsilon \sim \mathcal{N}(0,\,\sigma^{2})" /></a>.
 
-Moreover, let *k*\[*i*\] represent the school to which the *i*<sup>*t**h*</sup> student belongs. Then, the model has the following conditions for the orthogonal sum contrasts:
+Moreover, let <a href="https://www.codecogs.com/eqnedit.php?latex=k[i]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?k[i]" title="k[i]" /></a> represent the school to which the <a href="https://www.codecogs.com/eqnedit.php?latex=i^{th}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?i^{th}" title="i^{th}" /></a> student belongs. Then, the model has the following conditions for the orthogonal sum contrasts:
 
-$\\sum\_{i=1}^{N}x\_i = 0$, $x\_{i,k\[i\]} = 1 $ if *k* ≠ *J*, *x*<sub>*i*, *J*</sub> = −1, otherwise *x*<sub>*i*, *k*</sub> = 0
+<a href="https://www.codecogs.com/eqnedit.php?latex=$\sum_{i=1}^{N}x_i&space;=&space;0$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$\sum_{i=1}^{N}x_i&space;=&space;0$" title="$\sum_{i=1}^{N}x_i = 0$" /></a>, 
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\\x_{i,k[i]}&space;=&space;1&space;~&space;$if$~&space;k&space;\neq&space;J&space;\\&space;x_{i,J}&space;=&space;-1$,&space;otherwise&space;\\&space;$x_{i,k}&space;=&space;0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\\x_{i,k[i]}&space;=&space;1&space;~&space;$if$~&space;k&space;\neq&space;J&space;\\&space;x_{i,J}&space;=&space;-1$,&space;otherwise&space;\\&space;$x_{i,k}&space;=&space;0" title="\\x_{i,k[i]} = 1 ~ $if$~ k \neq J \\ x_{i,J} = -1$, otherwise \\ $x_{i,k} = 0" /></a>
 
 Fitting the Model
 =================
@@ -232,6 +234,8 @@ School ID: 2480
 </td>
 </tr>
 </table>
+
+
 School Effect Sizes
 ===================
 
@@ -264,9 +268,7 @@ legend(45, 2.5, legend=c("No Effect", "Group Mean"),
 ```
 
 <img src="Predicting_Group_Effects_with_One-Way_ANOVA_Sum_Contrasts_files/figure-markdown_github/unnamed-chunk-2-1.png" alt="Expected School Effect"  />
-<p class="caption">
-Expected School Effect
-</p>
+
 
 We might also examine the school cofficients ordered by effect size.
 
@@ -288,9 +290,7 @@ legend(0, 2.5, legend=c("No Effect", "Group Mean"),
 ```
 
 <img src="Predicting_Group_Effects_with_One-Way_ANOVA_Sum_Contrasts_files/figure-markdown_github/unnamed-chunk-3-1.png" alt="Expected School Effect (Ordered by Effect Size)"  />
-<p class="caption">
-Expected School Effect (Ordered by Effect Size)
-</p>
+
 
 We see that about a half of the schools are predicted to have a positive effect compared to the average school (red line). However, most schools have predicted group means above the mean of group means, suggesting that a few poorly-performing schools are skewing the results.
 
@@ -299,7 +299,7 @@ Goodness-of-Fit
 
 We can also carry out an F-test to determine how likely we are to observe these school effect sizes if schools actually have no effect on the scores (each school's average is predicted to be equal to the mean of school scores).
 
-*H*<sub>0</sub> : *B*<sub>1</sub> = *B*<sub>2</sub> =  ...  = *B*<sub>*J*</sub> = 0 or $\\overline{y}\_{i,j} = \\hat{\\alpha}\_j$ *H*<sub>*a*</sub> : *B*<sub>1</sub> ≠ *B*<sub>2</sub> ≠  ...  ≠ *B*<sub>*J*</sub> ≠ 0 or $\\overline{y}\_{i,j} \\neq \\hat{\\alpha}\_j$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\\H_0&space;:&space;\beta_1&space;=&space;\beta_2&space;=&space;...&space;=&space;\beta_J&space;=&space;0&space;~$or$~&space;\overline{y}_{i,j}&space;=&space;\hat{\alpha}_j&space;\\&space;H_a&space;:&space;\beta_1&space;\neq&space;\beta_2&space;\neq&space;...&space;\neq&space;\beta_J&space;\neq&space;0&space;~$or$~&space;\overline{y}_{i,j}&space;\neq&space;\hat{\alpha}_j" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\\H_0&space;:&space;\beta_1&space;=&space;\beta_2&space;=&space;...&space;=&space;\beta_J&space;=&space;0&space;~$or$~&space;\overline{y}_{i,j}&space;=&space;\hat{\alpha}_j&space;\\&space;H_a&space;:&space;\beta_1&space;\neq&space;\beta_2&space;\neq&space;...&space;\neq&space;\beta_J&space;\neq&space;0&space;~$or$~&space;\overline{y}_{i,j}&space;\neq&space;\hat{\alpha}_j" title="\\H_0 : \beta_1 = \beta_2 = ... = \beta_J = 0 ~$or$~ \overline{y}_{i,j} = \hat{\alpha}_j \\ H_a : \beta_1 \neq \beta_2 \neq ... \neq \beta_J \neq 0 ~$or$~ \overline{y}_{i,j} \neq \hat{\alpha}_j" /></a>
 
 The results show that we are significantly unlikely to observe these school effects (*F*<sub>59, 1612</sub>, *α* = 0.95) at predicting math scores than the intercept-only model (which assumes no school effects).
 
@@ -329,16 +329,16 @@ qf(p, df1, df2) # critical value for F-test
 
     ## [1] 1.329398
 
-In fact, if we examine the ratio of the school and residual sums of squares, we see that the variation in scores amongs schools accounts for about 20% of the total variation among student scores.
+In fact, if we examine the ratio of the school and residual sums of squares, we see that the variation in scores among schools accounts for about 20% of the total variation among student scores.
 
 Intraclass Correlation
 ======================
 
-The intraclass correlation is a useful statistic for telling us
+The intraclass correlation is a useful statistic for how much of the overall variability in scores can be explained by school differences.
 
 We calculate the within-school variance as follows:
 
-$$SS\_{within} = \\frac{1}{N-J} \\sum\_{k=1}^{J} \\sum\_{i=1}^{n\_k} (x\_{i,k} - \\overline{x}\_k)$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=$$SS_{within}&space;=&space;\frac{1}{N-J}&space;\sum_{k=1}^{J}&space;\sum_{i=1}^{n_k}&space;(x_{i,k}&space;-&space;\overline{x}_k)$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$SS_{within}&space;=&space;\frac{1}{N-J}&space;\sum_{k=1}^{J}&space;\sum_{i=1}^{n_k}&space;(x_{i,k}&space;-&space;\overline{x}_k)$$" title="$$SS_{within} = \frac{1}{N-J} \sum_{k=1}^{J} \sum_{i=1}^{n_k} (x_{i,k} - \overline{x}_k)$$" /></a>
 
 ``` r
 mu_within <- tapply(math, schoolid, mean)
@@ -364,7 +364,7 @@ var_within
 
 We calculate the within-school variance as follows:
 
-$$SS\_{between} = \\frac{1}{J-1} \\sum\_{k=1}^{J} (\\overline{x}\_k - \\frac{1}{J} \\sum\_{k=1}^{J}\\overline{x}\_k)^2$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=$$SS_{between}&space;=&space;\frac{1}{J-1}&space;\sum_{k=1}^{J}&space;(\overline{x}_k&space;-&space;\frac{1}{J}&space;\sum_{k=1}^{J}\overline{x}_k)^2$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$SS_{between}&space;=&space;\frac{1}{J-1}&space;\sum_{k=1}^{J}&space;(\overline{x}_k&space;-&space;\frac{1}{J}&space;\sum_{k=1}^{J}\overline{x}_k)^2$$" title="$$SS_{between} = \frac{1}{J-1} \sum_{k=1}^{J} (\overline{x}_k - \frac{1}{J} \sum_{k=1}^{J}\overline{x}_k)^2$$" /></a>
 
 ``` r
 # estimate between-schools variance
@@ -376,7 +376,7 @@ var_between
 
 Then, the intraclass correlation coefficient is simply:
 
-$$\\rho = \\frac{SS\_{between}}{SS\_{between} + SS\_{within}}$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=$$\rho&space;=&space;\frac{SS_{between}}{SS_{between}&space;&plus;&space;SS_{within}}$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$\rho&space;=&space;\frac{SS_{between}}{SS_{between}&space;&plus;&space;SS_{within}}$$" title="$$\rho = \frac{SS_{between}}{SS_{between} + SS_{within}}$$" /></a>
 
 ``` r
 # estimate ICC
